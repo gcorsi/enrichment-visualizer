@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#Copyright © 2020 Giulia I. Corsi
 import argparse as ap
 import pandas as pd
 import matplotlib
@@ -17,15 +18,15 @@ def parse_args():
     parser = ap.ArgumentParser()
     parser.add_argument('-e', '--enrichment_results', help='Path to table with enrichment results, in csv format ',
                         type=str, required=True)
-    parser.add_argument('-o', help='Path to output folder', type=str)
+    parser.add_argument('-o', help='Path to output folder', type=str, required = True)
     parser.add_argument('--GSEA', help='Source of the GSEA analysis', choices=['StringApp', 'Other'],
                         default='StringApp')
-    parser.add_argument('-c_n', help='Name of the column containing the number of background genes', type=str)
+    parser.add_argument('-c_n', help='Name of the column containing the number of background genes', type=str, required=False)
     parser.add_argument('-c_nb', help='Name of the column containing the number of genes assigned to each term',
-                        type=str)
-    parser.add_argument('-c_c', help='Name of the column containing a category, used to group enriched terms', type=str)
-    parser.add_argument('-c_d', help='Name of the column containing the term description', type=str)
-    parser.add_argument('-c_f', help='Name of the column containing the FDR value', type=str)
+                        type=str, required=False)
+    parser.add_argument('-c_c', help='Name of the column containing a category, used to group enriched terms', type=str, required=False)
+    parser.add_argument('-c_d', help='Name of the column containing the term description', type=str, required=False)
+    parser.add_argument('-c_f', help='Name of the column containing the FDR value', type=str, required=False)
     parser.add_argument('-n', help='Maximum number of terms to plot', type=int, default=20)
     parser.add_argument('--ratio_min',
                         help='Consider only terms for which the gene-ratio term is above the given threshold',
