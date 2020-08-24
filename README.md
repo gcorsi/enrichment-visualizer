@@ -32,13 +32,15 @@ In case the automatic adjustment is not sufficient the options --increase_height
 
 <h3>Running on enrichment results other than stringApp output table </h3>
 As a minimum, the table containing the enrichment resuls should contain columns with the following data for each row (ech row represents a term being tested for enrichment):
-  - N. background elements (eg. genes)
-  - N. elements assigned to the term
-  - Cathegory name (to group the results based on a certain cathegory. Use one cathegory for all rows to avoid grouping)
-  - Term description
-  - FDR
- </br>
- A name to each of these columns must be given in the header and assigned to the corresponding options (-cn, -c_nb, -c_c, -c_d, -c_f).
+<ul>
+<li> N. background elements (eg. genes)</li>
+<li> N. elements assigned to the term</li>
+<li> Cathegory name (to group the results based on a certain cathegory. Use one cathegory for all rows to avoid grouping)</li>
+<li> Term description</li>
+<li> FDR</li>
+<ul>
+</br>
+A name to each of these columns must be given in the header and assigned to the corresponding options (-cn, -c_nb, -c_c, -c_d, -c_f).
  </br>
  
  
