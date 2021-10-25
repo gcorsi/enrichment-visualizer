@@ -100,13 +100,16 @@ def dot_plot_enrichment(df: pd.DataFrame, title: str, out_folder: str, c_d: str,
         plt.gca().invert_yaxis()
         plt.yticks(range(len(df[c_d])),df[c_d], fontsize=11)
         markers=[]
-        lst_size_bins_counts = [0]
+        lst_size_bins_counts = [df[c_n].min()]
         lst_size_bins_counts.extend([x for x in sorted(size_bins.keys())])
         for i, bin in enumerate(sorted(size_bins.keys())):
             markers.append(plt.scatter([], [], c='grey', s=size_bins[bin], label=str(lst_size_bins_counts[i])+'-'+str(bin)))
         plt.legend(title = 'Gene counts', handles=markers,labelspacing=1, borderpad=1, fontsize=11)
-        cbar = plt.colorbar(dot_plot, label = c_f, ticks = [0,int(len(color_bins)/2),len(color_bins)-1])
-        cbar.set_ticklabels([df[c_f].unique()[0],df[c_f].unique()[int(len(df[c_f].unique())/2)],df[c_f].unique()[-1]])
+        cbar = plt.colorbar(dot_plot, ticks = [0,len(color_bins)-1])
+        cbar.ax.set_xlabel(c_f)
+        cbar.ax.invert_yaxis()
+        c_f_range=df.sort_values(c_f)[c_f].unique()
+        cbar.set_ticklabels([c_f_range[-1],c_f_range[0]])
         plt.xlabel('Gene Ratio', fontsize=11)
         plt.tight_layout()
         plt.savefig(os.path.join(out_folder,'%s_enrichment.svg'%title), format='svg')
